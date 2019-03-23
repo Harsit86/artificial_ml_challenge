@@ -20,5 +20,19 @@ You can run the API in `DEV` or `PROD` mode:
 [ENV=DEV/PROD] python run.py
 ```
 
+### Testing the API
+
+To test the API works, you can either use [postman](https://www.getpostman.com/) or from
+command line using [curl](https://curl.haxx.se/)
+
+```bash
+curl -F 'file=@bank-full.csv' -XPOST http://localhost:5000/upload/csv
+```
+
+
+## TODO
+
+* Add tests
+
 
 
