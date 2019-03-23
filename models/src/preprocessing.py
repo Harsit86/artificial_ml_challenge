@@ -2,6 +2,7 @@ import calendar
 from app.logger import get_logger
 from sklearn.base import TransformerMixin
 
+
 MONTH_REPLACE_MAP = {v.lower(): k for k,v in enumerate(calendar.month_abbr) if v}
 BOOL_REPLACE_MAP = {
     'yes': 1,
