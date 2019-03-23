@@ -15,20 +15,30 @@ pyenv virtualenv 3.7.2 venv -r requirements.txt
 ```
 
 
+### API
+
 You can run the API in `DEV` or `PROD` mode:
 
 ```bash
 [ENV=DEV/PROD] python run.py
 ```
 
-### Testing the API
+The API exposes two endoints:
 
-To test the API works, you can either use [postman](https://www.getpostman.com/) or from
+* `/upload/csv`
+* `/bank_marketing/<model_version>/predict` e.g. `/bank_marketing/v1/predict`
+
+
+To test the upload endpoints works, you can either use [postman](https://www.getpostman.com/) or from
 command line using [curl](https://curl.haxx.se/)
 
 ```bash
 curl -F 'file=@data/bank-full.csv' -XPOST http://localhost:5000/upload/csv
 ```
+
+The API is developed using [flask](http://flask.pocoo.org/) and writes the csv files to in memory
+[SQLite](https://www.sqlite.org/index.html) database.
+ 
 
 ## Model Build
 
