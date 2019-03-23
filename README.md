@@ -14,6 +14,7 @@ or [pyenv](https://github.com/pyenv/pyenv):
 pyenv virtualenv 3.7.2 venv -r requirements.txt
 ```
 
+
 You can run the API in `DEV` or `PROD` mode:
 
 ```bash
@@ -26,7 +27,16 @@ To test the API works, you can either use [postman](https://www.getpostman.com/)
 command line using [curl](https://curl.haxx.se/)
 
 ```bash
-curl -F 'file=@bank-full.csv' -XPOST http://localhost:5000/upload/csv
+curl -F 'file=@data/bank-full.csv' -XPOST http://localhost:5000/upload/csv
+```
+
+## Model Build
+
+Model build code and notebooks are in [models](./models). To run the [Jupyter notebooks](), create
+an ipython kernel:
+
+```bash
+ipython kernel install --user --name=artificial_ml
 ```
 
 
