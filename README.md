@@ -42,7 +42,7 @@ The API is developed using [flask](http://flask.pocoo.org/) and writes the csv f
 
 ## Model Build
 
-Model build code and notebooks are in [models](./models). To run the [Jupyter notebooks](), create
+Model build code and notebooks are in [models](./models). To run the [Jupyter notebooks](https://jupyter.org/), create
 an ipython kernel:
 
 ```bash
