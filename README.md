@@ -1,4 +1,4 @@
-# Artifical ML Challenge 
+# Artifical Labs ML Challenge 
 
 ## Getting started
 
