@@ -1,4 +1,4 @@
-# artificial_ml_challenge
+# Artifical ML Challenge 
 
 ## Getting started
 
@@ -15,7 +15,7 @@ pyenv virtualenv 3.7.2 venv -r requirements.txt
 ```
 
 
-### API
+### API Endpdoints
 
 You can run the API in `DEV` or `PROD` mode:
 
@@ -25,9 +25,11 @@ You can run the API in `DEV` or `PROD` mode:
 
 The API exposes two endoints:
 
-* `/upload/csv`
-* `/bank_marketing/<model_version>/predict` e.g. `/bank_marketing/v1/predict`
+1. CSV upload - `/upload/csv`
+1. Model prediction endpoint -`/bank_marketing/v1/predict` 
 
+
+#### CSV Upload 
 
 To test the upload endpoints works, you can either use [postman](https://www.getpostman.com/) or from
 command line using [curl](https://curl.haxx.se/)
@@ -38,6 +40,48 @@ curl -F 'file=@data/bank-full.csv' -XPOST http://localhost:5000/upload/csv
 
 The API is developed using [flask](http://flask.pocoo.org/) and writes the csv files to in memory
 [SQLite](https://www.sqlite.org/index.html) database.
+
+
+#### Model Prediction
+
+To test the model prediction endpoints, run the API as instructed above and use the sample json data in [data](./data).
+
+Running
+
+```bash
+curl -XPOST -H 'Content-type: application/json' -d @data/sample_predict_data_success.json http://localhost:5000/bank_marketing/v1/predict
+```
+
+will return a response with status `success` as follows.
+
+
+```json
+{
+  "message": "Likelihood of subscribing to product: 2.140 %.",
+  "probability": 2.14,
+  "status": "success"
+}
+```
+
+Running 
+
+```bash
+curl -XPOST -H 'Content-type: application/json' -d @data/sample_predict_data_invalid_month.json http://localhost:5000/bank_marketing/v1/predict
+```
+
+will return a response with status `error` as follows.
+
+
+```json
+{
+  "message": {
+    "month": [
+      "Not a valid choice."
+    ]
+  },
+  "status": "error"
+}
+```
  
 
 ## Model Build
@@ -52,7 +96,13 @@ ipython kernel install --user --name=artificial_ml
 
 ## TODO
 
-* Add tests
+Additional work that needs to be done if 
 
+* Add tests
+* Add docstrings to functions
+* Better documentation
+* Swagger UI for endpoints
+* Better error handling and messages
+* Tune model and perhaps exclude `duration` as the feature causes leakage according to [here](https://archive.ics.uci.edu/ml/datasets/bank+marketing)
 
 
