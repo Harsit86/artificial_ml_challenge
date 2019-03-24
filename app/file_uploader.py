@@ -9,7 +9,7 @@ from flask import (
 
 from app.models import CustomerDetails
 from app.db import db
-from app.logger import get_logger
+from logger import get_logger
 
 
 log = get_logger(__name__)

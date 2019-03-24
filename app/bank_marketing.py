@@ -23,7 +23,7 @@ BANK_MARKETING_MODEL = load_model_pipeline(BANK_MARKETING_MODEL_PICKLE)
 def predict_subscription():
     req_data = request.get_json()
     try:
-        data = BANK_MARKETING_MODEL_PARAM_SCHEMA.load(req_data)
+        BANK_MARKETING_MODEL_PARAM_SCHEMA.load(req_data)
     except ValidationError as exc:
         return jsonify({
             'status': 'error',

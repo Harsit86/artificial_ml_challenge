@@ -1,6 +1,6 @@
 import calendar
 import pandas as pd
-from app.logger import get_logger
+from logger import get_logger
 from sklearn.base import TransformerMixin
 from sklearn.preprocessing import OneHotEncoder
 
