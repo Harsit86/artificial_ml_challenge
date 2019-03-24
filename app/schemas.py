@@ -33,6 +33,7 @@ VALID_POUTCOMES = [
 
 class BankMarketingModelParamSchema(Schema):
 
+    id = fields.Integer(load_only=True)
     age = fields.Integer(required=True, validate=Range(18, 150))
     job = fields.String(required=True, validate=OneOf(VALID_JOBS))
     marital = fields.String(required=True, validate=OneOf(VALID_MARTIAL_STATUS))
@@ -49,6 +50,7 @@ class BankMarketingModelParamSchema(Schema):
     pdays = fields.Integer(required=True)
     previous = fields.Integer(required=True)
     poutcome = fields.String(required=True, validate=OneOf(VALID_POUTCOMES))
+    y = fields.String(dump_only=True)
 
 
 BANK_MARKETING_MODEL_PARAM_SCHEMA = BankMarketingModelParamSchema()

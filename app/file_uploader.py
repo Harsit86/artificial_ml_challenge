@@ -10,14 +10,15 @@ from flask import (
 from app.models import CustomerDetails
 from app.db import db
 from logger import get_logger
+from app.schemas import BANK_MARKETING_MODEL_PARAM_SCHEMA
 
 
 log = get_logger(__name__)
-file_upload_bp = Blueprint('file_upload', __name__, url_prefix='/upload')
+file_upload_bp = Blueprint('file_upload', __name__, url_prefix='')
 
 
 
-@file_upload_bp.route('/csv', methods=['POST'])
+@file_upload_bp.route('/upload/csv', methods=['POST'])
 def upload_csv():
     file = request.files.get('file', None)
     if not file :
@@ -40,3 +41,19 @@ def upload_csv():
             'status': 'error',
             'message': str(e)
         }), 500
+
+
+@file_upload_bp.route('/customer/<int:cd_id>')
+def get_customer_details(cd_id):
+    cd = CustomerDetails.query.get(cd_id)
+    if cd:
+        return jsonify({
+            'status': 'success',
+            'message': BANK_MARKETING_MODEL_PARAM_SCHEMA.dump(cd).data
+        }), 200
+    else:
+        return jsonify({
+            'status': 'error',
+            'message': f'User {cd_id} not found.'
+        }), 404
+

@@ -17,15 +17,17 @@ pyenv virtualenv 3.7.2 venv -r requirements.txt
 
 ### API Endpdoints
 
-You can run the API in `DEV` or `PROD` mode:
+You can run the API as follows:
 
 ```bash
-[ENV=DEV/PROD] python run.py
+python run.py
 ```
 
-The API exposes two endoints:
+The API exposes the following endpoints 
 
 1. CSV upload - `/upload/csv`
+1. Customer endpont - `/customer/<customer_id>` e.g. `/customer/1` - **This is purely to show that the csv upload endpoint 
+woks, it should only be called after the CSV file has been uploaded otherwise it will return an error message.**
 1. Model prediction endpoint -`/bank_marketing/v1/predict` 
 
 
@@ -40,6 +42,39 @@ curl -F 'file=@data/bank-full.csv' -XPOST http://localhost:5000/upload/csv
 
 The API is developed using [flask](http://flask.pocoo.org/) and writes the csv files to in memory
 [SQLite](https://www.sqlite.org/index.html) database.
+
+To verify the the data is saved to database, a `/customer/<customer_id>` endpoint is also exposed, run:
+
+```bash
+curl -XGET http://localhost:5000/customer/100
+``` 
+
+which will return the 100<sup>th</sup> customer detail in the csv file
+
+```json
+{
+  "message": {
+    "age": 46,
+    "balance": 229,
+    "campaign": 1,
+    "contact": "unknown",
+    "day": 5,
+    "default": "no",
+    "duration": 197,
+    "education": "tertiary",
+    "housing": "yes",
+    "job": "management",
+    "loan": "no",
+    "marital": "married",
+    "month": "may",
+    "pdays": -1,
+    "poutcome": "unknown",
+    "previous": 0,
+    "y": "no"
+  },
+  "status": "success"
+}
+```
 
 
 #### Model Prediction
