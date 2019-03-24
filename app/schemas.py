@@ -10,6 +10,7 @@ from marshmallow.validate import (
 
 from models.src.data_transformers import MONTH_REPLACE_MAP
 
+
 VALID_JOBS = [
     'admin.', 'blue-collar', 'entrepreneur', 'housemaid', 'management', 'retired',
     'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown'
@@ -18,17 +19,16 @@ VALID_MARTIAL_STATUS = [
     'divorced', 'married', 'single', 'unknown',
 ]
 VALID_EDUCATION = [
-    'basic.4y', 'basic.6y', 'basic.9y', 'high.school', 'illiterate',
-    'professional.course', 'university.degree', 'unknown',
+    'tertiary', 'secondary', 'unknown', 'primary'
 ]
 VALID_ANSWERS = [
     'no', 'yes', 'unknown',
 ]
 VALID_CONTACTS = [
-    'cellular', 'telephone',
+    'cellular', 'telephone', 'unknown',
 ]
 VALID_POUTCOMES = [
-    'failure', 'nonexistent', 'success'
+    'failure', 'other', 'success', 'unknown',
 ]
 
 

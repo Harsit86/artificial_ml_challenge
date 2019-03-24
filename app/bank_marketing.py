@@ -22,12 +22,11 @@ BANK_MARKETING_MODEL = load_model_pipeline(BANK_MARKETING_MODEL_PICKLE)
 @bank_marketing_bp.route(f'/v{BANK_MARKETING_MODEL_VERSION}/predict', methods=['POST'])
 def predict_subscription():
     req_data = request.get_json()
-    try:
-        BANK_MARKETING_MODEL_PARAM_SCHEMA.load(req_data)
-    except ValidationError as exc:
+    validated_data = BANK_MARKETING_MODEL_PARAM_SCHEMA.load(req_data)
+    if validated_data.errors:
         return jsonify({
             'status': 'error',
-            'message': exc.messages
+            'message': validated_data.errors,
         }), 422
 
     df = pd.DataFrame([req_data])
