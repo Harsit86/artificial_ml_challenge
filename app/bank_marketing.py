@@ -4,8 +4,6 @@ from flask import (
     request,
     jsonify,
 )
-from marshmallow.exceptions import ValidationError
-
 
 from models.src.config import (
     BANK_MARKETING_MODEL_VERSION,
