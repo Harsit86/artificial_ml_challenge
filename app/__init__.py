@@ -7,7 +7,7 @@ from app.bank_marketing import bank_marketing_bp
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('config.ProdConfig')
+    app.config.from_object('config.BaseConfig')
     app.register_blueprint(file_upload_bp)
     app.register_blueprint(bank_marketing_bp)
     db.init_app(app)

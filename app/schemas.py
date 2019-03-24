@@ -1,4 +1,3 @@
-import calendar
 from marshmallow import (
     Schema,
     fields
